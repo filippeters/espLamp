@@ -45,14 +45,14 @@ void setup()
     else
         wifiManager.autoConnect (hostName.c_str());
 
-    //save settings (mqtt server) to a json file
+    //save current settings (mqtt server) to the json settings file
+
+    //subscribe, start connection with the mqtt server
 
 }
 
 void loop()
 {
-
-
     if (digitalRead (ESP8266_flashBtn) == HIGH)
         digitalWrite (ESP8266_userBtn, HIGH);
     else
