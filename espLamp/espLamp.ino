@@ -17,8 +17,8 @@ WiFiClient  telnetClient;
 #define     DEBUG_PRINT(x)    Serial.print (x)
 #define     DEBUG_PRINTLN(x)  Serial.println (x)
 #else
-#define     DEBUG_PRINT(x) ;
-#define     DEBUG_PRINTLN(x) ;
+#define     DEBUG_PRINT(x)
+#define     DEBUG_PRINTLN(x)
 #endif
 
 const int ESP8266_userBtn = 16;
@@ -35,6 +35,7 @@ void saveConfigCallback ()
     DEBUG_PRINTLN ("Should save config");
     shouldSaveConfig = true;
 }
+
 void setup()
 {
     //setup the two button pins
@@ -150,8 +151,13 @@ void setup()
 
 void loop()
 {
+    //initial testing purposes.
     if (digitalRead (ESP8266_flashBtn) == HIGH)
         digitalWrite (ESP8266_userBtn, HIGH);
     else
         digitalWrite (ESP8266_userBtn, LOW);
+
+    //check if something arrived
+
+    //run the display loop
 }
