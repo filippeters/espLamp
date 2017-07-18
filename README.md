@@ -7,7 +7,8 @@ I've used a couple of nodemcu boards, connnected a bunch of ws2812 led strips to
 This little sketch is meant to setup a wifi portal to connect them into the main wifi and also setup a connection to a mqtt broker.
 Once that's done, mqtt can be setup on a raspberry pi and add homekit support.
 
-
+The intent is to also listen on an udp port for incoming data, to display on the 128 led's. 
+If nothing arrived in the last 5 seconds, then fallback to the last mqtt setting.
 
 ## arduino setup ## 
 * install arduino environment
@@ -26,11 +27,11 @@ I prefer raspberry pi's without all the hdmi cable mess, hence set it up, hide i
 Prepare an sd card with raspbian, mount it and set it up to connect with the home wifi. 
 Preferably with a fixed ip address, this will allow to remember it for the mqtt address.
 
-###mqtt on raspberry pi###
+### mqtt on raspberry pi ###
 
-###homekit on raspberry pi###
+### homekit on raspberry pi ###
 
-###web interface###
+### web interface ###
 
 
 

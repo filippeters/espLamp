@@ -25,15 +25,25 @@ const int ESP8266_userBtn = 16;
 const int ESP8266_flashBtn = 0;
 
 //define your default values here, if there are different values in config.json, they are overwritten.
-char mqttServer[40];
-char mqttPort[6] = "8080";
-bool shouldSaveConfig = false;
+static char mqttServer[40];
+static char mqttPort[6] = "8080";
+static bool shouldSaveConfig = false;
+
+//the main mqtt client
+WiFiClient wifiClient;
+PubSubClient  mqttClient (wifiClient);
 
 //callback notifying us of the need to save config
 void saveConfigCallback ()
 {
     DEBUG_PRINTLN ("Should save config");
     shouldSaveConfig = true;
+}
+
+
+static void MqttCallback (const char* topic, byte* payload, unsigned int length)
+{
+
 }
 
 void setup()
@@ -146,8 +156,15 @@ void setup()
     }
 
     //subscribe, start connection with the mqtt server (if address and port are set)
-
+    String mqttHost = customMqttServer.getValue();
+    String mqttPort = customMqttPort.getValue();
+    if (mqttHost.length() != 0)
+    {
+        mqttClient.setServer (mqttHost.c_str(), mqttPort.toInt());
+        mqttClient.setCallback (MqttCallback);
+    }
 }
+
 
 void loop()
 {
